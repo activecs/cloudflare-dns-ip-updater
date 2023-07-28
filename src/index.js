@@ -4,6 +4,15 @@ import NodeCache from "node-cache";
 
 const cfDnsRecordCache = new NodeCache({ stdTTL: 60 * 60, maxKeys: 1 });
 
+const logger = {
+  info: (message) =>
+      console.log(`[INFO] ${new Date().toISOString()} ~ ${message}`),
+  error: (message) =>
+      console.error(`[ERROR] ${new Date().toISOString()} ~ ${message}`),
+};
+
+logger.info(`Starting Cloudflare DNS IP Updater with cron expression: ${process.env.CRON_EXPRESSION}`)
+
 cron.schedule(process.env.CRON_EXPRESSION, async () => {
   logger.info(`running a task ${new Date().toISOString()}`);
   await main()
@@ -81,9 +90,3 @@ async function updateCloudflareDnsRecord(cfAccount, currentIp) {
   }).then((r) => `A record IP updated -> ${currentIp}`);
 }
 
-const logger = {
-  info: (message) =>
-    console.log(`[INFO] ${new Date().toISOString()} ~ ${message}`),
-  error: (message) =>
-    console.error(`[ERROR] ${new Date().toISOString()} ~ ${message}`),
-};
