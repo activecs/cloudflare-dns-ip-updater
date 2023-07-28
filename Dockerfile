@@ -1,4 +1,5 @@
 FROM node:18.17-alpine3.18 AS build
+ENV NODE_ENV production
 WORKDIR /usr/app
 
 # Copy the Node.js application files into the container

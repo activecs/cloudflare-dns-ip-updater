@@ -1,12 +1,13 @@
 # cloudflare-dns-ip-updater
+
 Node js script for servers with dynamic IPs that automatically updates Cloudflare DNS records whenever it changes.
 
 ![build workflow](https://github.com/activecs/cloudflare-dns-ip-updater/actions/workflows/docker-image.yml/badge.svg)
 
-
 Sample docker-compose
+
 ```yaml
-version: '3'
+version: "3"
 services:
   cloudflare-dns-ip-updater:
     image: deduard/tools:cloudflare-dns-ip-updater-20230727

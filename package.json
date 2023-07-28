@@ -4,12 +4,24 @@
   "description": "An application to update Cloudflare DNS IP",
   "author": "activecs",
   "type": "module",
+  "license": "MIT",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "lint": "eslint . --ext .js --fix --ignore-path .gitignore",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
+    "eslint": "^8.0.1",
+    "node-cache": "^5.1.2",
     "node-cron": "^3.0.2",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "prettier": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0"
   }
 }
