@@ -10,7 +10,7 @@ Sample docker-compose
 version: "3"
 services:
   cloudflare-dns-ip-updater:
-    image: deduard/tools:cloudflare-dns-ip-updater-20231023
+    image: deduard/tools:cloudflare-dns-ip-updater-20240103
     container_name: cloudflare-dns-ip-updater
     environment:
       - ZONE_ID=REPLACE_ME
