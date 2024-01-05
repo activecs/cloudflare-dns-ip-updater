@@ -22,3 +22,5 @@ jobs:
         run: docker build . --tag deduard/tools:cloudflare-dns-ip-updater-$(date +%Y%m%d)
       - name: Publish Docker image
         run: docker push deduard/tools:cloudflare-dns-ip-updater-$(date +%Y%m%d)
+      - name: Publish Docker image Latest
+        run: docker push deduard/tools:cloudflare-dns-ip-updater-latest
