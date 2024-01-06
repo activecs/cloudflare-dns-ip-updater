@@ -19,7 +19,7 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PAT }}
       - name: Build the Docker image
-        run: docker build . --tag deduard/tools:cloudflare-dns-ip-updater-$(date +%Y%m%d)
+        run: docker build . -t deduard/tools:cloudflare-dns-ip-updater-$(date +%Y%m%d) -t deduard/tools:cloudflare-dns-ip-updater-latest
       - name: Publish Docker image
         run: docker push deduard/tools:cloudflare-dns-ip-updater-$(date +%Y%m%d)
       - name: Publish Docker image Latest
