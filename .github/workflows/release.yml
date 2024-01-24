@@ -41,7 +41,7 @@ jobs:
   build-image:
     name: Build and push Docker image
     needs: [release-notes]
-    uses: ./.github/workflows/docker-build-push.yml
+    uses: ./.github/workflows/publish-docker-image.yml
     with:
       docker_tags: deduard/tools:cloudflare-dns-ip-updater-${{ needs.release-notes.outputs.date }},deduard/tools:cloudflare-dns-ip-updater-latest
     secrets: inherit
