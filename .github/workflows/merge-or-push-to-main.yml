@@ -27,7 +27,7 @@ jobs:
   build-image:
     name: Build and push Docker image
     needs: [checkout]
-    uses: ./.github/workflows/docker-build-push.yml
+    uses: ./.github/workflows/publish-docker-image.yml
     with:
       docker_tags: deduard/tools:cloudflare-dns-ip-updater-${{ needs.checkout.outputs.date }}
     secrets: inherit
