@@ -1,6 +1,7 @@
 name: Create Github release
 
 on:
+  workflow_dispatch:
   push:
     tags: [v*]
 
@@ -21,15 +22,15 @@ jobs:
       - name: Generate Release Notes
         id: gen_release_notes
         run: |
-          # Bash script to generate release notes
-          # Fetch commit messages and construct release notes text
-          echo "Release Notes:" > release_notes.md
-          echo "Docker Images:" >> release_notes.md
+          echo "Release Notes
+          " > release_notes.md
+          echo "Docker Image
+          " >> release_notes.md
           echo "https://hub.docker.com/r/deduard/tools/tags?page=1&name=cloudflare-dns-ip-updater" >> release_notes.md
-          # Command to get commit messages
-          # git log $(git describe --tags --abbrev=0)..HEAD --oneline >> release_notes.md
-          # Replace above command with your logic to fetch commit messages
-          echo "notes=$(cat release_notes.md)" >> $GITHUB_OUTPUT
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "notes<<$EOF" >> $GITHUB_OUTPUT
+          echo "$(cat release_notes.md)." >> $GITHUB_OUTPUT
+          echo "$EOF" >> $GITHUB_OUTPUT
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
