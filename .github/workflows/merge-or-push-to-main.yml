@@ -1,6 +1,9 @@
-name: On merge or push to main build and push docker image
+name: Merge or push to main workflow
 
 on:
+
+  workflow_dispatch:
+
   push:
     branches: ["main"]
     paths-ignore:
