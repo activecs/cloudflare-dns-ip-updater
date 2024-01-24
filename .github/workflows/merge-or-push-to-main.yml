@@ -11,9 +11,11 @@ on:
       - '.github/**'
 
 jobs:
-  build:
+  checkout:
     name: Build and push Docker image
     runs-on: self-hosted
+    outputs:
+      date: ${{ steps.date.outputs.date }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -22,7 +24,9 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y%m%d')"
 
-      - name: Trigger Docker Build and Push Workflow
-        uses: ./.github/workflows/docker-build-push.yml
-        with:
-          docker_tags: deduard/tools:cloudflare-dns-ip-updater-${{ steps.date.outputs.date }}
+  build-image:
+    name: Build and push Docker image
+    needs: [checkout]
+    uses: ./.github/workflows/docker-build-push.yml
+    with:
+      docker_tags: deduard/tools:cloudflare-dns-ip-updater-${{ needs.checkout.outputs.date }}
