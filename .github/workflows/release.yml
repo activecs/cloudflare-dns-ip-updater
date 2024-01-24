@@ -1,0 +1,42 @@
+name: Create Github release
+
+on:
+  push:
+    tags: [v*]
+
+jobs:
+  build:
+    name: Upload Release Asset
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d')"
+
+      - name: Trigger Docker Build and Push Workflow
+        uses: ./.github/workflows/docker-build-push.yml
+        with:
+          docker_tags: deduard/tools:cloudflare-dns-ip-updater-${{ steps.date.outputs.date }},deduard/tools:cloudflare-dns-ip-updater-latest
+
+      - name: Generate Release Notes
+        id: gen_release_notes
+        run: |
+            # Bash script to generate release notes
+            # Fetch commit messages and construct release notes text
+            echo "Release Notes:" > release_notes.md
+            echo "Docker Images:" >> release_notes.md
+            echo "https://hub.docker.com/r/deduard/tools/tags?page=1&name=cloudflare-dns-ip-updater" >> release_notes.md
+            # Command to get commit messages
+            # git log $(git describe --tags --abbrev=0)..HEAD --oneline >> release_notes.md
+            # Replace above command with your logic to fetch commit messages
+            echo "::set-output name=notes::$(cat release_notes.md)"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+         token: ${{ secrets.GITHUB_TOKEN }}
+         body: ${{ steps.gen_release_notes.outputs.notes }}
+         generate_release_notes: true
