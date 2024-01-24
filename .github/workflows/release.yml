@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Upload Release Asset
+    name: Create Github release
     runs-on: self-hosted
     steps:
       - name: Checkout
