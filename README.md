@@ -7,7 +7,6 @@ Node js script for servers with dynamic IPs that automatically updates Cloudflar
 Sample docker-compose
 
 ```yaml
-version: "3"
 services:
   cloudflare-dns-ip-updater:
     image: deduard/tools:cloudflare-dns-ip-updater-latest
