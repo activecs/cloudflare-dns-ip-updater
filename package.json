@@ -12,16 +12,16 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
-    "eslint": "^8.57.0",
+    "eslint": "^8.57.1",
     "node-cache": "^5.1.2",
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",
-    "prettier": "^3.2.5"
+    "prettier": "^3.8.4"
   },
   "devDependencies": {
     "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-promise": "^6.1.1"
+    "eslint-plugin-promise": "^6.6.0"
   }
 }
