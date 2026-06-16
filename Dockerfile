@@ -1,4 +1,4 @@
-FROM node:18.17-alpine3.18 AS build
+FROM node:22.2-alpine3.18 AS build
 ENV NODE_ENV production
 WORKDIR /usr/app
 
