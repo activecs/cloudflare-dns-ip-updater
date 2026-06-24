@@ -18,7 +18,7 @@ jobs:
       date: ${{ steps.date.outputs.date }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Get current date
         id: date
